@@ -20,7 +20,7 @@ APM MCC Exchange Rate
 import com.konfigthis.client.ApiClient;
 import com.konfigthis.client.ApiException;
 import com.konfigthis.client.ApiResponse;
-import com.konfigthis.client.2C2P;
+import com.konfigthis.client.TwoCTwoP;
 import com.konfigthis.client.Configuration;
 import com.konfigthis.client.model.*;
 import com.konfigthis.client.api.ExchangeRateApi;
@@ -32,7 +32,7 @@ public class Example {
   public static void main(String[] args) {
     Configuration configuration = new Configuration();
     configuration.host = "https://sandbox-pgw.2c2p.com";
-    2C2P client = new 2C2P(configuration);
+    TwoCTwoP client = new TwoCTwoP(configuration);
     String paymentToken = "paymentToken_example";
     String locale = "locale_example";
     UUID clientID = UUID.randomUUID();
@@ -119,7 +119,7 @@ No authorization required
 import com.konfigthis.client.ApiClient;
 import com.konfigthis.client.ApiException;
 import com.konfigthis.client.ApiResponse;
-import com.konfigthis.client.2C2P;
+import com.konfigthis.client.TwoCTwoP;
 import com.konfigthis.client.Configuration;
 import com.konfigthis.client.model.*;
 import com.konfigthis.client.api.ExchangeRateApi;
@@ -131,7 +131,7 @@ public class Example {
   public static void main(String[] args) {
     Configuration configuration = new Configuration();
     configuration.host = "https://sandbox-pgw.2c2p.com";
-    2C2P client = new 2C2P(configuration);
+    TwoCTwoP client = new TwoCTwoP(configuration);
     String paymentToken = "paymentToken_example";
     String bin = "bin_example";
     String locale = "locale_example";
@@ -223,7 +223,7 @@ JWT Request Endpoint
 import com.konfigthis.client.ApiClient;
 import com.konfigthis.client.ApiException;
 import com.konfigthis.client.ApiResponse;
-import com.konfigthis.client.2C2P;
+import com.konfigthis.client.TwoCTwoP;
 import com.konfigthis.client.Configuration;
 import com.konfigthis.client.model.*;
 import com.konfigthis.client.api.ExchangeRateApi;
@@ -235,7 +235,7 @@ public class Example {
   public static void main(String[] args) {
     Configuration configuration = new Configuration();
     configuration.host = "https://sandbox-pgw.2c2p.com";
-    2C2P client = new 2C2P(configuration);
+    TwoCTwoP client = new TwoCTwoP(configuration);
     String payload = "payload_example";
     try {
       PayloadRequest result = client

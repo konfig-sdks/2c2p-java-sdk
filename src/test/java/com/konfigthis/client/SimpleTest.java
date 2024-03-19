@@ -11,7 +11,7 @@ public class SimpleTest {
     public void initClientTest() {
         Configuration configuration = new Configuration();
         configuration.host = "https://sandbox-pgw.2c2p.com";
-        2C2P client = new 2C2P(configuration);
+        TwoCTwoP client = new TwoCTwoP(configuration);
         assertNotNull(client);
     }
 }

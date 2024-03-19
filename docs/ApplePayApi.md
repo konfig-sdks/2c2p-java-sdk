@@ -18,7 +18,7 @@ All URIs are relative to *https://sandbox-pgw.2c2p.com*
 import com.konfigthis.client.ApiClient;
 import com.konfigthis.client.ApiException;
 import com.konfigthis.client.ApiResponse;
-import com.konfigthis.client.2C2P;
+import com.konfigthis.client.TwoCTwoP;
 import com.konfigthis.client.Configuration;
 import com.konfigthis.client.model.*;
 import com.konfigthis.client.api.ApplePayApi;
@@ -30,7 +30,7 @@ public class Example {
   public static void main(String[] args) {
     Configuration configuration = new Configuration();
     configuration.host = "https://sandbox-pgw.2c2p.com";
-    2C2P client = new 2C2P(configuration);
+    TwoCTwoP client = new TwoCTwoP(configuration);
     String paymentToken = "paymentToken_example";
     String validationUrl = "validationUrl_example";
     String locale = "locale_example";

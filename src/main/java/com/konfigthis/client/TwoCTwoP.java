@@ -21,7 +21,7 @@ import com.konfigthis.client.api.RedirectFrontEndApi;
 import com.konfigthis.client.api.TransactionStatusApi;
 import com.konfigthis.client.api.UserPreferenceApi;
 
-public class 2C2P {
+public class TwoCTwoP {
     private ApiClient apiClient;
     public final ApplePayApi applePay;
     public final CacheApi cache;
@@ -44,11 +44,11 @@ public class 2C2P {
     public final TransactionStatusApi transactionStatus;
     public final UserPreferenceApi userPreference;
 
-    public 2C2P() {
+    public TwoCTwoP() {
         this(null);
     }
 
-    public 2C2P(Configuration configuration) {
+    public TwoCTwoP(Configuration configuration) {
         this.apiClient = new ApiClient(null, configuration);
         this.applePay = new ApplePayApi(this.apiClient);
         this.cache = new CacheApi(this.apiClient);
