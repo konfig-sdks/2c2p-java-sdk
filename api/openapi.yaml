@@ -1,0 +1,4192 @@
+openapi: 3.0.1
+info:
+  description: Rest API for PGW payment purpose - LATEST
+  title: PGW Payment API 4.3
+  version: "4.3"
+  x-konfig-uses-multipart-form-data: true
+servers:
+- description: Sandbox server
+  url: https://sandbox-pgw.2c2p.com
+tags:
+- name: ExchangeRate
+- name: ApplePay
+- name: Cache
+- name: CancelTransaction
+- name: CardInstallmentPlanInfo
+- name: CardTokenInfo
+- name: Initialization
+- name: LoyaltyPointInfo
+- name: Payment
+- name: PaymentInquiry
+- name: PaymentInstruction
+- name: PaymentNotification
+- name: PaymentOption
+- name: PaymentOptionDetails
+- name: PaymentSimulate
+- name: PaymentToken
+- name: RedirectBackEnd
+- name: RedirectFrontEnd
+- name: TransactionStatus
+- name: UserPreference
+paths:
+  /payment/4.3/applepay/merchantvalidation:
+    post:
+      operationId: ApplePay_validateMerchant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantValidationApplePay'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MerchantValidationApplePay'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/MerchantValidationApplePay'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MerchantValidationApplePay'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantValidationApplePayResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MerchantValidationApplePayResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MerchantValidationApplePayResponse'
+          description: Success
+      summary: ""
+      tags:
+      - ApplePay
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-applepay-merchantvalidation
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/cache/cleancache:
+    post:
+      operationId: Cache_cleanCache
+      responses:
+        "200":
+          description: Success
+      summary: ""
+      tags:
+      - Cache
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-cache-cleancache
+      x-accepts: application/json
+  /payment/4.3/canceltransaction:
+    post:
+      operationId: CancelTransaction_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentNonRedirectResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentNonRedirectResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentNonRedirectResponse'
+          description: Success
+      summary: ""
+      tags:
+      - CancelTransaction
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-canceltransaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/cardinstallmentplaninfo:
+    post:
+      operationId: CardInstallmentPlanInfo_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardInstallmentPlanInfoRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CardInstallmentPlanInfoRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CardInstallmentPlanInfoRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CardInstallmentPlanInfoRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentOptionDetailsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentOptionDetailsResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentOptionDetailsResponse'
+          description: Success
+      tags:
+      - CardInstallmentPlanInfo
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-cardinstallmentplaninfo
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/cardtokeninfo:
+    post:
+      operationId: CardTokenInfo_getCardTokenInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentCardTokenResponseV43'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentCardTokenResponseV43'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentCardTokenResponseV43'
+          description: Success
+      summary: ""
+      tags:
+      - CardTokenInfo
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-cardtokeninfo
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/exchangerate:
+    post:
+      operationId: ExchangeRate_getRate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentExchangeRateConverterRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentExchangeRateConverterRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentExchangeRateConverterRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentExchangeRateConverterRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentExchangeRateConverterResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentExchangeRateConverterResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentExchangeRateConverterResponse'
+          description: Success
+      summary: ""
+      tags:
+      - ExchangeRate
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-exchangerate
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/exchangerate/secure:
+    post:
+      operationId: ExchangeRate_requestEndpoint
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+          description: Success
+      summary: JWT Request Endpoint
+      tags:
+      - ExchangeRate
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-exchangerate-secure
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/exchangerate/apmmccexchangerate:
+    post:
+      operationId: ExchangeRate_apmMcc
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentApmMccExchangeRateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentApmMccExchangeRateResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentApmMccExchangeRateResponse'
+          description: Success
+      summary: APM MCC Exchange Rate
+      tags:
+      - ExchangeRate
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-exchangerate-apmmccexchangerate
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/initialization:
+    post:
+      operationId: Initialization_requestCreation
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentInitializationResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentInitializationResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentInitializationResponse'
+          description: Success
+      summary: ""
+      tags:
+      - Initialization
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-initialization
+      x-accepts: application/json
+  /payment/4.3/loyaltypointinfo:
+    post:
+      operationId: LoyaltyPointInfo_postLoyaltyPointInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentLoyaltyPointInfoRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentLoyaltyPointInfoRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentLoyaltyPointInfoRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentLoyaltyPointInfoRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentLoyaltyPointInfoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentLoyaltyPointInfoResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentLoyaltyPointInfoResponse'
+          description: Success
+      summary: ""
+      tags:
+      - LoyaltyPointInfo
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-loyaltypointinfo
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/payment:
+    post:
+      operationId: Payment_createPayment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequestV43'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequestV43'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequestV43'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequestV43'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+          description: Success
+      summary: ""
+      tags:
+      - Payment
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-payment
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/paymentinquiry:
+    post:
+      operationId: PaymentInquiry_postPaymentDetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+          description: Success
+      summary: ""
+      tags:
+      - PaymentInquiry
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentinquiry
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/paymentinstruction:
+    post:
+      operationId: PaymentInstruction_submitInstruction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+          description: Success
+      summary: ""
+      tags:
+      - PaymentInstruction
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentinstruction
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/paymentnotification:
+    post:
+      operationId: PaymentNotification_processNotification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentNotificationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentNotificationRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentNotificationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentNotificationRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponseBase'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponseBase'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentResponseBase'
+          description: Success
+      summary: ""
+      tags:
+      - PaymentNotification
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentnotification
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/paymentoption:
+    post:
+      operationId: PaymentOption_createPaymentOption
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentOptionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentOptionResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentOptionResponse'
+          description: Success
+      summary: ""
+      tags:
+      - PaymentOption
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentoption
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/paymentoptiondetails:
+    post:
+      operationId: PaymentOptionDetails_postOptionDetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentOptionDetailsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentOptionDetailsRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentOptionDetailsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentOptionDetailsRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentOptionDetailsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentOptionDetailsResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentOptionDetailsResponse'
+          description: Success
+      summary: ""
+      tags:
+      - PaymentOptionDetails
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentoptiondetails
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/paymentsimulate:
+    post:
+      operationId: PaymentSimulate_executePaymentSimulation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+          description: Success
+      summary: ""
+      tags:
+      - PaymentSimulate
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentsimulate
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/paymenttoken:
+    post:
+      operationId: PaymentToken_generateToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PayloadRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PayloadRequest'
+          description: Success
+      summary: ""
+      tags:
+      - PaymentToken
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymenttoken
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/redirectbackend:
+    post:
+      operationId: RedirectBackEnd_postPaymentRedirect
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              paymentResponse:
+                style: form
+              isLeaveApp:
+                style: form
+            schema:
+              $ref: '#/components/schemas/RedirectBackEndPostPaymentRedirectRequest'
+      responses:
+        "200":
+          description: Success
+      summary: ""
+      tags:
+      - RedirectBackEnd
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-redirectbackend
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /payment/4.3/redirectfrontend:
+    post:
+      operationId: RedirectFrontEnd_postPaymentRedirect
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              payResponse:
+                style: form
+              isLeaveApp:
+                style: form
+            schema:
+              $ref: '#/components/schemas/RedirectFrontEndPostPaymentRedirectRequest'
+      responses:
+        "200":
+          description: Success
+      summary: ""
+      tags:
+      - RedirectFrontEnd
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-redirectfrontend
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /payment/4.3/transactionstatus:
+    post:
+      operationId: TransactionStatus_updateTransactionStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionStatusRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TransactionStatusRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/TransactionStatusRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TransactionStatusRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+          description: Success
+      summary: ""
+      tags:
+      - TransactionStatus
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-transactionstatus
+      x-content-type: application/json
+      x-accepts: application/json
+  /payment/4.3/userpreference:
+    post:
+      operationId: UserPreference_saveUserPreference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentBaseRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentUserPreferenceResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentUserPreferenceResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentUserPreferenceResponse'
+          description: Success
+      summary: ""
+      tags:
+      - UserPreference
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--payment-4.3-userpreference
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    Address:
+      example:
+        address3: address3
+        address2: address2
+        city: city
+        address1: address1
+        countryCode: countryCode
+        postalCode: postalCode
+        state: state
+      properties:
+        address1:
+          nullable: true
+          type: string
+        address2:
+          nullable: true
+          type: string
+        address3:
+          nullable: true
+          type: string
+        postalCode:
+          nullable: true
+          type: string
+        city:
+          nullable: true
+          type: string
+        state:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+      type: object
+    BrowserDetails:
+      example:
+        deviceType: deviceType
+        os: os
+        name: name
+        version: version
+      properties:
+        version:
+          nullable: true
+          type: string
+        deviceType:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        os:
+          nullable: true
+          type: string
+      type: object
+    CardInstallmentPlanInfoRequest:
+      example:
+        paymentToken: paymentToken
+        bankCode: bankCode
+        browserDetails:
+          deviceType: deviceType
+          os: os
+          name: name
+          version: version
+        clientID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        locale: locale
+        cardNo: cardNo
+      properties:
+        cardNo:
+          nullable: true
+          type: string
+        bankCode:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+    CreditCardTokenV43:
+      example:
+        accountNo: accountNo
+        name: name
+        expiry: expiry
+        iconUrl: iconUrl
+        cardBrand: cardBrand
+        subChannelCode: subChannelCode
+        email: email
+        logoUrl: logoUrl
+        token: token
+        channelCode: channelCode
+        status: status
+      properties:
+        token:
+          nullable: true
+          type: string
+        accountNo:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        expiry:
+          nullable: true
+          type: string
+        channelCode:
+          nullable: true
+          type: string
+        subChannelCode:
+          nullable: true
+          type: string
+        cardBrand:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        iconUrl:
+          nullable: true
+          type: string
+        logoUrl:
+          nullable: true
+          type: string
+      type: object
+    CurrencyAPMMCCFxRate:
+      example:
+        fx: 1.4658129805029452
+        sequenceNo: 6
+        expire: 0
+        id: id
+        currencyCode: currencyCode
+      properties:
+        expire:
+          format: int64
+          type: integer
+        sequenceNo:
+          format: int32
+          type: integer
+        id:
+          nullable: true
+          type: string
+        fx:
+          format: double
+          type: number
+        currencyCode:
+          nullable: true
+          type: string
+      type: object
+    CurrencyFxRate:
+      example:
+        amount: amount
+        fx: 6.027456183070403
+        sequenceNo: 0
+        name: name
+        iconUrl: iconUrl
+        id: id
+        currencyCode: currencyCode
+      properties:
+        name:
+          nullable: true
+          type: string
+        iconUrl:
+          nullable: true
+          type: string
+        amount:
+          nullable: true
+          type: string
+        sequenceNo:
+          format: int32
+          type: integer
+        id:
+          nullable: true
+          type: string
+        fx:
+          format: double
+          type: number
+        currencyCode:
+          nullable: true
+          type: string
+      type: object
+    CustomerAddress:
+      example:
+        shipping:
+          address3: address3
+          address2: address2
+          city: city
+          address1: address1
+          countryCode: countryCode
+          postalCode: postalCode
+          state: state
+        billing:
+          address3: address3
+          address2: address2
+          city: city
+          address1: address1
+          countryCode: countryCode
+          postalCode: postalCode
+          state: state
+      properties:
+        billing:
+          $ref: '#/components/schemas/Address'
+        shipping:
+          $ref: '#/components/schemas/Address'
+      type: object
+    IppPlan:
+      example:
+        interestRate: 5.637376656633329
+        payLaterPeriod: 9
+        period: 5
+        sequenceNo: 1
+        terms: terms
+        interestType: interestType
+        label: label
+        monthlyAmount: 2.3021358869347655
+        currencyCode: currencyCode
+        monthlyInterest: 7.061401241503109
+      properties:
+        sequenceNo:
+          format: int32
+          type: integer
+        period:
+          format: int32
+          type: integer
+        interestType:
+          nullable: true
+          type: string
+        interestRate:
+          format: double
+          type: number
+        monthlyAmount:
+          format: double
+          type: number
+        monthlyInterest:
+          format: double
+          type: number
+        currencyCode:
+          nullable: true
+          type: string
+        label:
+          nullable: true
+          type: string
+        terms:
+          nullable: true
+          type: string
+        payLaterPeriod:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    Locale:
+      example:
+        code: code
+        name: name
+        iconUrl: iconUrl
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        iconUrl:
+          nullable: true
+          type: string
+      type: object
+    LoyaltyDetails:
+      example:
+        queryReferenceSpecified: true
+        externalMerchantId: externalMerchantId
+        providerID: providerID
+        accountNo: accountNo
+        redeemAmount: 1.4658129805029452
+        accountAuthData: accountAuthData
+        rewards:
+        - Quantity: 5.962133916683182
+          id: id
+        - Quantity: 5.962133916683182
+          id: id
+      properties:
+        providerID:
+          nullable: true
+          type: string
+        accountNo:
+          nullable: true
+          type: string
+        accountAuthData:
+          nullable: true
+          type: string
+        queryReferenceSpecified:
+          readOnly: true
+          type: boolean
+        externalMerchantId:
+          nullable: true
+          type: string
+        redeemAmount:
+          format: double
+          type: number
+        rewards:
+          items:
+            $ref: '#/components/schemas/LoyaltyRewards'
+          nullable: true
+          type: array
+      type: object
+    LoyaltyRewards:
+      example:
+        Quantity: 5.962133916683182
+        id: id
+      properties:
+        id:
+          nullable: true
+          type: string
+        Quantity:
+          format: double
+          type: number
+      type: object
+    MerchantConfiguration:
+      example:
+        notification:
+          whatsApp: true
+          line: true
+          facebook: true
+        payment:
+          immediatePayment: true
+          fx:
+            dcc:
+              terms: terms
+              active: true
+            mcp:
+              terms: terms
+              active: true
+            apmMcc:
+              terms: terms
+              active: true
+          cardTokenOnly: true
+          tokenizeOnly: true
+          tokenize: true
+      properties:
+        payment:
+          $ref: '#/components/schemas/MerchantConfigurationPayment'
+        notification:
+          $ref: '#/components/schemas/MerchantConfigurationNotification'
+      type: object
+    MerchantConfigurationNotification:
+      example:
+        whatsApp: true
+        line: true
+        facebook: true
+      properties:
+        facebook:
+          type: boolean
+        whatsApp:
+          type: boolean
+        line:
+          type: boolean
+      type: object
+    MerchantConfigurationPayment:
+      example:
+        immediatePayment: true
+        fx:
+          dcc:
+            terms: terms
+            active: true
+          mcp:
+            terms: terms
+            active: true
+          apmMcc:
+            terms: terms
+            active: true
+        cardTokenOnly: true
+        tokenizeOnly: true
+        tokenize: true
+      properties:
+        tokenize:
+          type: boolean
+        tokenizeOnly:
+          type: boolean
+        cardTokenOnly:
+          type: boolean
+        immediatePayment:
+          type: boolean
+        fx:
+          $ref: '#/components/schemas/MerchantConfigurationPaymentFx'
+      type: object
+    MerchantConfigurationPaymentFx:
+      example:
+        dcc:
+          terms: terms
+          active: true
+        mcp:
+          terms: terms
+          active: true
+        apmMcc:
+          terms: terms
+          active: true
+      properties:
+        mcp:
+          $ref: '#/components/schemas/MerchantConfigurationPaymentFxRate'
+        dcc:
+          $ref: '#/components/schemas/MerchantConfigurationPaymentFxRate'
+        apmMcc:
+          $ref: '#/components/schemas/MerchantConfigurationPaymentFxRate'
+      type: object
+    MerchantConfigurationPaymentFxRate:
+      example:
+        terms: terms
+        active: true
+      properties:
+        active:
+          type: boolean
+        terms:
+          nullable: true
+          type: string
+      type: object
+    MerchantDetails:
+      example:
+        address: address
+        name: name
+        bannerUrl: bannerUrl
+        id: id
+        email: email
+        logoUrl: logoUrl
+      properties:
+        id:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        address:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        logoUrl:
+          nullable: true
+          type: string
+        bannerUrl:
+          nullable: true
+          type: string
+      type: object
+    MerchantValidationApplePay:
+      example:
+        paymentToken: paymentToken
+        browserDetails:
+          deviceType: deviceType
+          os: os
+          name: name
+          version: version
+        clientID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        validationUrl: validationUrl
+        locale: locale
+      properties:
+        validationUrl:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+    MerchantValidationApplePayResponse:
+      example:
+        merchantSessionIdentifier: merchantSessionIdentifier
+        respDesc: respDesc
+        signature: signature
+        displayName: displayName
+        pspId: pspId
+        nonce: nonce
+        expiresAt: 6
+        epochTimestamp: 0
+        merchantIdentifier: merchantIdentifier
+        retries: 1
+        domainName: domainName
+        operationalAnalyticsIdentifier: operationalAnalyticsIdentifier
+        respCode: respCode
+      properties:
+        epochTimestamp:
+          format: int64
+          type: integer
+        expiresAt:
+          format: int64
+          type: integer
+        merchantSessionIdentifier:
+          nullable: true
+          type: string
+        nonce:
+          nullable: true
+          type: string
+        merchantIdentifier:
+          nullable: true
+          type: string
+        domainName:
+          nullable: true
+          type: string
+        displayName:
+          nullable: true
+          type: string
+        signature:
+          nullable: true
+          type: string
+        operationalAnalyticsIdentifier:
+          nullable: true
+          type: string
+        retries:
+          format: int32
+          type: integer
+        pspId:
+          nullable: true
+          type: string
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PayloadRequest:
+      example:
+        payload: payload
+      properties:
+        payload:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentApmMccExchangeRateResponse:
+      example:
+        paymentToken: paymentToken
+        respDesc: respDesc
+        fxRates:
+        - fx: 1.4658129805029452
+          sequenceNo: 6
+          expire: 0
+          id: id
+          currencyCode: currencyCode
+        - fx: 1.4658129805029452
+          sequenceNo: 6
+          expire: 0
+          id: id
+          currencyCode: currencyCode
+        respCode: respCode
+      properties:
+        fxRates:
+          items:
+            $ref: '#/components/schemas/CurrencyAPMMCCFxRate'
+          nullable: true
+          type: array
+        paymentToken:
+          nullable: true
+          type: string
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentBaseRequest:
+      example:
+        paymentToken: paymentToken
+        browserDetails:
+          deviceType: deviceType
+          os: os
+          name: name
+          version: version
+        clientID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        locale: locale
+      properties:
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+    PaymentCardTokenResponseV43:
+      example:
+        paymentToken: paymentToken
+        respDesc: respDesc
+        customerToken:
+        - accountNo: accountNo
+          name: name
+          expiry: expiry
+          iconUrl: iconUrl
+          cardBrand: cardBrand
+          subChannelCode: subChannelCode
+          email: email
+          logoUrl: logoUrl
+          token: token
+          channelCode: channelCode
+          status: status
+        - accountNo: accountNo
+          name: name
+          expiry: expiry
+          iconUrl: iconUrl
+          cardBrand: cardBrand
+          subChannelCode: subChannelCode
+          email: email
+          logoUrl: logoUrl
+          token: token
+          channelCode: channelCode
+          status: status
+        respCode: respCode
+      properties:
+        paymentToken:
+          nullable: true
+          type: string
+        customerToken:
+          items:
+            $ref: '#/components/schemas/CreditCardTokenV43'
+          nullable: true
+          type: array
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentChannelCategory:
+      example:
+        code: code
+        groups:
+        - code: code
+          expirationDescription: expirationDescription
+          expirationTimer: expirationTimer
+          logoUrl: logoUrl
+          default: true
+          sequenceNo: 2
+          paymentCode: paymentCode
+          name: name
+          agentChannelCode: agentChannelCode
+          qrType: qrType
+          expiration: true
+          id: 5
+          iconUrl: iconUrl
+          optionName: optionName
+          channelCode: channelCode
+        - code: code
+          expirationDescription: expirationDescription
+          expirationTimer: expirationTimer
+          logoUrl: logoUrl
+          default: true
+          sequenceNo: 2
+          paymentCode: paymentCode
+          name: name
+          agentChannelCode: agentChannelCode
+          qrType: qrType
+          expiration: true
+          id: 5
+          iconUrl: iconUrl
+          optionName: optionName
+          channelCode: channelCode
+        expirationDescription: expirationDescription
+        expirationTimer: expirationTimer
+        logoUrl: logoUrl
+        default: true
+        sequenceNo: 9
+        paymentCode: paymentCode
+        name: name
+        agentChannelCode: agentChannelCode
+        qrType: qrType
+        expiration: true
+        id: 7
+        iconUrl: iconUrl
+        optionName: optionName
+        channelCode: channelCode
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/ResponsePaymentChannel'
+          nullable: true
+          type: array
+        id:
+          format: int32
+          nullable: true
+          type: integer
+        sequenceNo:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        code:
+          nullable: true
+          type: string
+        iconUrl:
+          nullable: true
+          type: string
+        logoUrl:
+          nullable: true
+          type: string
+        default:
+          type: boolean
+        channelCode:
+          nullable: true
+          type: string
+        agentChannelCode:
+          nullable: true
+          type: string
+        optionName:
+          nullable: true
+          type: string
+        paymentCode:
+          nullable: true
+          type: string
+        qrType:
+          nullable: true
+          type: string
+        expirationTimer:
+          nullable: true
+          type: string
+        expirationDescription:
+          nullable: true
+          type: string
+        expiration:
+          type: boolean
+      type: object
+    PaymentChannelPreference:
+      example:
+        sequenceNo: 0
+        agentCode: agentCode
+        name: name
+        agentChannelCode: agentChannelCode
+        categoryCode: categoryCode
+        iconUrl: iconUrl
+        logoUrl: logoUrl
+        groupCode: groupCode
+        channelCode: channelCode
+      properties:
+        sequenceNo:
+          format: int32
+          type: integer
+        categoryCode:
+          nullable: true
+          type: string
+        groupCode:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        channelCode:
+          nullable: true
+          type: string
+        agentCode:
+          nullable: true
+          type: string
+        agentChannelCode:
+          nullable: true
+          type: string
+        iconUrl:
+          nullable: true
+          type: string
+        logoUrl:
+          nullable: true
+          type: string
+      type: object
+    PaymentExchangeRateConverterRequest:
+      example:
+        paymentToken: paymentToken
+        browserDetails:
+          deviceType: deviceType
+          os: os
+          name: name
+          version: version
+        clientID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        bin: bin
+        locale: locale
+      properties:
+        bin:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+    PaymentExchangeRateConverterResponse:
+      example:
+        paymentToken: paymentToken
+        respDesc: respDesc
+        fxRates:
+        - amount: amount
+          fx: 6.027456183070403
+          sequenceNo: 0
+          name: name
+          iconUrl: iconUrl
+          id: id
+          currencyCode: currencyCode
+        - amount: amount
+          fx: 6.027456183070403
+          sequenceNo: 0
+          name: name
+          iconUrl: iconUrl
+          id: id
+          currencyCode: currencyCode
+        providerCode: providerCode
+        expire: 1
+        respCode: respCode
+      properties:
+        fxRates:
+          items:
+            $ref: '#/components/schemas/CurrencyFxRate'
+          nullable: true
+          type: array
+        providerCode:
+          nullable: true
+          type: string
+        expire:
+          format: int64
+          nullable: true
+          type: integer
+        paymentToken:
+          nullable: true
+          type: string
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentInitialization:
+      example:
+        locale:
+        - code: code
+          name: name
+          iconUrl: iconUrl
+        - code: code
+          name: name
+          iconUrl: iconUrl
+      properties:
+        locale:
+          items:
+            $ref: '#/components/schemas/Locale'
+          nullable: true
+          type: array
+      type: object
+    PaymentInitializationResponse:
+      example:
+        respDesc: respDesc
+        initialization:
+          locale:
+          - code: code
+            name: name
+            iconUrl: iconUrl
+          - code: code
+            name: name
+            iconUrl: iconUrl
+        respCode: respCode
+      properties:
+        initialization:
+          $ref: '#/components/schemas/PaymentInitialization'
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentItem:
+      example:
+        code: code
+        quantity: 1
+        price: 5.962133916683182
+        name: name
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        price:
+          format: double
+          type: number
+      type: object
+    PaymentLoyaltyPointInfoRequest:
+      example:
+        paymentToken: paymentToken
+        browserDetails:
+          deviceType: deviceType
+          os: os
+          name: name
+          version: version
+        clientID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        providerID: providerID
+        profileID: profileID
+        expiryMonth: expiryMonth
+        expiryYear: expiryYear
+        locale: locale
+        cardNo: cardNo
+        referenceID: referenceID
+      properties:
+        providerID:
+          nullable: true
+          type: string
+        profileID:
+          nullable: true
+          type: string
+        referenceID:
+          nullable: true
+          type: string
+        cardNo:
+          nullable: true
+          type: string
+        expiryMonth:
+          nullable: true
+          type: string
+        expiryYear:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+    PaymentLoyaltyPointInfoResponse:
+      example:
+        paymentToken: paymentToken
+        respDesc: respDesc
+        terms: terms
+        providerID: providerID
+        providerName: providerName
+        referenceID: referenceID
+        providerType: providerType
+        rewards:
+        - amount: 5.962133916683182
+          sequenceNo: 0
+          forceToSelectReward: true
+          quantity: 5.637376656633329
+          price: 2.3021358869347655
+          totalPoints: 6.027456183070403
+          name: name
+          id: id
+          label: label
+          type: type
+          currencyCode: currencyCode
+          point: 1.4658129805029452
+        - amount: 5.962133916683182
+          sequenceNo: 0
+          forceToSelectReward: true
+          quantity: 5.637376656633329
+          price: 2.3021358869347655
+          totalPoints: 6.027456183070403
+          name: name
+          id: id
+          label: label
+          type: type
+          currencyCode: currencyCode
+          point: 1.4658129805029452
+        respCode: respCode
+      properties:
+        paymentToken:
+          nullable: true
+          type: string
+        providerID:
+          nullable: true
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        referenceID:
+          nullable: true
+          type: string
+        providerType:
+          nullable: true
+          type: string
+        terms:
+          nullable: true
+          type: string
+        rewards:
+          items:
+            $ref: '#/components/schemas/PaymentLoyaltyReward'
+          nullable: true
+          type: array
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentLoyaltyReward:
+      example:
+        amount: 5.962133916683182
+        sequenceNo: 0
+        forceToSelectReward: true
+        quantity: 5.637376656633329
+        price: 2.3021358869347655
+        totalPoints: 6.027456183070403
+        name: name
+        id: id
+        label: label
+        type: type
+        currencyCode: currencyCode
+        point: 1.4658129805029452
+      properties:
+        sequenceNo:
+          format: int32
+          type: integer
+        id:
+          nullable: true
+          type: string
+        currencyCode:
+          nullable: true
+          type: string
+        totalPoints:
+          format: double
+          type: number
+        label:
+          nullable: true
+          type: string
+        point:
+          format: double
+          type: number
+        forceToSelectReward:
+          type: boolean
+        name:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        amount:
+          format: double
+          type: number
+        quantity:
+          format: double
+          type: number
+        price:
+          format: double
+          type: number
+      type: object
+    PaymentNonRedirectResponse:
+      example:
+        respDesc: respDesc
+        invoiceNo: invoiceNo
+        respCode: respCode
+        channelCode: channelCode
+      properties:
+        invoiceNo:
+          nullable: true
+          type: string
+        channelCode:
+          nullable: true
+          type: string
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentNotificationRequest:
+      example:
+        paymentToken: paymentToken
+        browserDetails:
+          deviceType: deviceType
+          os: os
+          name: name
+          version: version
+        clientID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        plateform: plateform
+        recipientID: recipientID
+        recipientName: recipientName
+        locale: locale
+      properties:
+        plateform:
+          nullable: true
+          type: string
+        recipientID:
+          nullable: true
+          type: string
+        recipientName:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+    PaymentOptionDetailsChannel:
+      example:
+        registrationStatus: registrationStatus
+        sequenceNo: 6
+        partnerMerchantRefID: partnerMerchantRefID
+        currencyCodes:
+        - currencyCodes
+        - currencyCodes
+        ippProviderCode: ippProviderCode
+        bankShortName: bankShortName
+        name: name
+        payment:
+          input:
+            key: ""
+          code:
+            agentCode: agentCode
+            agentChannelCode: agentChannelCode
+            channelCode: channelCode
+          validation:
+            key: ""
+          info:
+            termsConsent: true
+            terms: terms
+            provider:
+              transactionDetails:
+                amount: 2.027123023002322
+                description: description
+                invoiceNo: invoiceNo
+                currencyCode: currencyCode
+              channels:
+              - channels
+              - channels
+              termsConsent: true
+              terms: terms
+              id: id
+              merchantDetails:
+                countryCode: countryCode
+                name: name
+                id: id
+            plans:
+            - interestRate: 5.637376656633329
+              payLaterPeriod: 9
+              period: 5
+              sequenceNo: 1
+              terms: terms
+              interestType: interestType
+              label: label
+              monthlyAmount: 2.3021358869347655
+              currencyCode: currencyCode
+              monthlyInterest: 7.061401241503109
+            - interestRate: 5.637376656633329
+              payLaterPeriod: 9
+              period: 5
+              sequenceNo: 1
+              terms: terms
+              interestType: interestType
+              label: label
+              monthlyAmount: 2.3021358869347655
+              currencyCode: currencyCode
+              monthlyInterest: 7.061401241503109
+            promoUrl: promoUrl
+            customData:
+            - sequenceNo: 3
+              data: data
+              type: type
+            - sequenceNo: 3
+              data: data
+              type: type
+            learnMoreUrl: learnMoreUrl
+        checkEligibleOption: true
+        iconUrl: iconUrl
+        logoUrl: logoUrl
+        isDown: true
+      properties:
+        sequenceNo:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        bankShortName:
+          nullable: true
+          type: string
+        currencyCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        iconUrl:
+          nullable: true
+          type: string
+        logoUrl:
+          nullable: true
+          type: string
+        payment:
+          $ref: '#/components/schemas/PaymentOptionDetailsPayment'
+        isDown:
+          type: boolean
+        checkEligibleOption:
+          type: boolean
+        ippProviderCode:
+          nullable: true
+          type: string
+        registrationStatus:
+          nullable: true
+          type: string
+        partnerMerchantRefID:
+          nullable: true
+          type: string
+      type: object
+    PaymentOptionDetailsCustomData:
+      example:
+        sequenceNo: 3
+        data: data
+        type: type
+      properties:
+        sequenceNo:
+          format: int32
+          type: integer
+        type:
+          nullable: true
+          type: string
+        data:
+          nullable: true
+          type: string
+      type: object
+    PaymentOptionDetailsInfo:
+      example:
+        termsConsent: true
+        terms: terms
+        provider:
+          transactionDetails:
+            amount: 2.027123023002322
+            description: description
+            invoiceNo: invoiceNo
+            currencyCode: currencyCode
+          channels:
+          - channels
+          - channels
+          termsConsent: true
+          terms: terms
+          id: id
+          merchantDetails:
+            countryCode: countryCode
+            name: name
+            id: id
+        plans:
+        - interestRate: 5.637376656633329
+          payLaterPeriod: 9
+          period: 5
+          sequenceNo: 1
+          terms: terms
+          interestType: interestType
+          label: label
+          monthlyAmount: 2.3021358869347655
+          currencyCode: currencyCode
+          monthlyInterest: 7.061401241503109
+        - interestRate: 5.637376656633329
+          payLaterPeriod: 9
+          period: 5
+          sequenceNo: 1
+          terms: terms
+          interestType: interestType
+          label: label
+          monthlyAmount: 2.3021358869347655
+          currencyCode: currencyCode
+          monthlyInterest: 7.061401241503109
+        promoUrl: promoUrl
+        customData:
+        - sequenceNo: 3
+          data: data
+          type: type
+        - sequenceNo: 3
+          data: data
+          type: type
+        learnMoreUrl: learnMoreUrl
+      properties:
+        terms:
+          nullable: true
+          type: string
+        promoUrl:
+          nullable: true
+          type: string
+        plans:
+          items:
+            $ref: '#/components/schemas/IppPlan'
+          nullable: true
+          type: array
+        customData:
+          items:
+            $ref: '#/components/schemas/PaymentOptionDetailsCustomData'
+          nullable: true
+          type: array
+        provider:
+          $ref: '#/components/schemas/PaymentOptionDetailsInfoProvider'
+        learnMoreUrl:
+          nullable: true
+          type: string
+        termsConsent:
+          type: boolean
+      type: object
+    PaymentOptionDetailsInfoProvider:
+      example:
+        transactionDetails:
+          amount: 2.027123023002322
+          description: description
+          invoiceNo: invoiceNo
+          currencyCode: currencyCode
+        channels:
+        - channels
+        - channels
+        termsConsent: true
+        terms: terms
+        id: id
+        merchantDetails:
+          countryCode: countryCode
+          name: name
+          id: id
+      properties:
+        id:
+          nullable: true
+          type: string
+        channels:
+          items:
+            type: string
+          nullable: true
+          type: array
+        merchantDetails:
+          $ref: '#/components/schemas/PodInfoProviderMerchantDetails'
+        transactionDetails:
+          $ref: '#/components/schemas/PodInfoProviderTransactionDetails'
+        terms:
+          nullable: true
+          type: string
+        termsConsent:
+          type: boolean
+      type: object
+    PaymentOptionDetailsPayment:
+      example:
+        input:
+          key: ""
+        code:
+          agentCode: agentCode
+          agentChannelCode: agentChannelCode
+          channelCode: channelCode
+        validation:
+          key: ""
+        info:
+          termsConsent: true
+          terms: terms
+          provider:
+            transactionDetails:
+              amount: 2.027123023002322
+              description: description
+              invoiceNo: invoiceNo
+              currencyCode: currencyCode
+            channels:
+            - channels
+            - channels
+            termsConsent: true
+            terms: terms
+            id: id
+            merchantDetails:
+              countryCode: countryCode
+              name: name
+              id: id
+          plans:
+          - interestRate: 5.637376656633329
+            payLaterPeriod: 9
+            period: 5
+            sequenceNo: 1
+            terms: terms
+            interestType: interestType
+            label: label
+            monthlyAmount: 2.3021358869347655
+            currencyCode: currencyCode
+            monthlyInterest: 7.061401241503109
+          - interestRate: 5.637376656633329
+            payLaterPeriod: 9
+            period: 5
+            sequenceNo: 1
+            terms: terms
+            interestType: interestType
+            label: label
+            monthlyAmount: 2.3021358869347655
+            currencyCode: currencyCode
+            monthlyInterest: 7.061401241503109
+          promoUrl: promoUrl
+          customData:
+          - sequenceNo: 3
+            data: data
+            type: type
+          - sequenceNo: 3
+            data: data
+            type: type
+          learnMoreUrl: learnMoreUrl
+      properties:
+        info:
+          $ref: '#/components/schemas/PaymentOptionDetailsInfo'
+        code:
+          $ref: '#/components/schemas/PaymentOptionDetailsPaymentCode'
+        input:
+          additionalProperties: {}
+          nullable: true
+          type: object
+        validation:
+          additionalProperties: {}
+          nullable: true
+          type: object
+      type: object
+    PaymentOptionDetailsPaymentCode:
+      example:
+        agentCode: agentCode
+        agentChannelCode: agentChannelCode
+        channelCode: channelCode
+      properties:
+        channelCode:
+          nullable: true
+          type: string
+        agentCode:
+          nullable: true
+          type: string
+        agentChannelCode:
+          nullable: true
+          type: string
+      type: object
+    PaymentOptionDetailsRequest:
+      example:
+        paymentToken: paymentToken
+        browserDetails:
+          deviceType: deviceType
+          os: os
+          name: name
+          version: version
+        clientID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        categoryCode: categoryCode
+        locale: locale
+        groupCode: groupCode
+      properties:
+        categoryCode:
+          type: string
+        groupCode:
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - categoryCode
+      - groupCode
+      - paymentToken
+      type: object
+    PaymentOptionDetailsResponse:
+      example:
+        respDesc: respDesc
+        channels:
+        - registrationStatus: registrationStatus
+          sequenceNo: 6
+          partnerMerchantRefID: partnerMerchantRefID
+          currencyCodes:
+          - currencyCodes
+          - currencyCodes
+          ippProviderCode: ippProviderCode
+          bankShortName: bankShortName
+          name: name
+          payment:
+            input:
+              key: ""
+            code:
+              agentCode: agentCode
+              agentChannelCode: agentChannelCode
+              channelCode: channelCode
+            validation:
+              key: ""
+            info:
+              termsConsent: true
+              terms: terms
+              provider:
+                transactionDetails:
+                  amount: 2.027123023002322
+                  description: description
+                  invoiceNo: invoiceNo
+                  currencyCode: currencyCode
+                channels:
+                - channels
+                - channels
+                termsConsent: true
+                terms: terms
+                id: id
+                merchantDetails:
+                  countryCode: countryCode
+                  name: name
+                  id: id
+              plans:
+              - interestRate: 5.637376656633329
+                payLaterPeriod: 9
+                period: 5
+                sequenceNo: 1
+                terms: terms
+                interestType: interestType
+                label: label
+                monthlyAmount: 2.3021358869347655
+                currencyCode: currencyCode
+                monthlyInterest: 7.061401241503109
+              - interestRate: 5.637376656633329
+                payLaterPeriod: 9
+                period: 5
+                sequenceNo: 1
+                terms: terms
+                interestType: interestType
+                label: label
+                monthlyAmount: 2.3021358869347655
+                currencyCode: currencyCode
+                monthlyInterest: 7.061401241503109
+              promoUrl: promoUrl
+              customData:
+              - sequenceNo: 3
+                data: data
+                type: type
+              - sequenceNo: 3
+                data: data
+                type: type
+              learnMoreUrl: learnMoreUrl
+          checkEligibleOption: true
+          iconUrl: iconUrl
+          logoUrl: logoUrl
+          isDown: true
+        - registrationStatus: registrationStatus
+          sequenceNo: 6
+          partnerMerchantRefID: partnerMerchantRefID
+          currencyCodes:
+          - currencyCodes
+          - currencyCodes
+          ippProviderCode: ippProviderCode
+          bankShortName: bankShortName
+          name: name
+          payment:
+            input:
+              key: ""
+            code:
+              agentCode: agentCode
+              agentChannelCode: agentChannelCode
+              channelCode: channelCode
+            validation:
+              key: ""
+            info:
+              termsConsent: true
+              terms: terms
+              provider:
+                transactionDetails:
+                  amount: 2.027123023002322
+                  description: description
+                  invoiceNo: invoiceNo
+                  currencyCode: currencyCode
+                channels:
+                - channels
+                - channels
+                termsConsent: true
+                terms: terms
+                id: id
+                merchantDetails:
+                  countryCode: countryCode
+                  name: name
+                  id: id
+              plans:
+              - interestRate: 5.637376656633329
+                payLaterPeriod: 9
+                period: 5
+                sequenceNo: 1
+                terms: terms
+                interestType: interestType
+                label: label
+                monthlyAmount: 2.3021358869347655
+                currencyCode: currencyCode
+                monthlyInterest: 7.061401241503109
+              - interestRate: 5.637376656633329
+                payLaterPeriod: 9
+                period: 5
+                sequenceNo: 1
+                terms: terms
+                interestType: interestType
+                label: label
+                monthlyAmount: 2.3021358869347655
+                currencyCode: currencyCode
+                monthlyInterest: 7.061401241503109
+              promoUrl: promoUrl
+              customData:
+              - sequenceNo: 3
+                data: data
+                type: type
+              - sequenceNo: 3
+                data: data
+                type: type
+              learnMoreUrl: learnMoreUrl
+          checkEligibleOption: true
+          iconUrl: iconUrl
+          logoUrl: logoUrl
+          isDown: true
+        configuration:
+          notification:
+            whatsApp: true
+            line: true
+            facebook: true
+          payment:
+            immediatePayment: true
+            fx:
+              dcc:
+                terms: terms
+                active: true
+              mcp:
+                terms: terms
+                active: true
+              apmMcc:
+                terms: terms
+                active: true
+            cardTokenOnly: true
+            tokenizeOnly: true
+            tokenize: true
+        name: name
+        categoryCode: categoryCode
+        iconUrl: iconUrl
+        validation:
+          cardTypes:
+          - prefixes:
+            - prefixes
+            - prefixes
+            regex: regex
+            sequenceNo: 4
+            name: name
+            iconUrl: iconUrl
+          - prefixes:
+            - prefixes
+            - prefixes
+            regex: regex
+            sequenceNo: 4
+            name: name
+            iconUrl: iconUrl
+          cardNo:
+            prefixes:
+            - prefixes
+            - prefixes
+            regex: regex
+        respCode: respCode
+        totalChannel: 0
+        groupCode: groupCode
+      properties:
+        totalChannel:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        categoryCode:
+          nullable: true
+          type: string
+        groupCode:
+          nullable: true
+          type: string
+        iconUrl:
+          nullable: true
+          type: string
+        channels:
+          items:
+            $ref: '#/components/schemas/PaymentOptionDetailsChannel'
+          nullable: true
+          type: array
+        validation:
+          $ref: '#/components/schemas/PaymentOptionDetailsValidation'
+        configuration:
+          $ref: '#/components/schemas/MerchantConfiguration'
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentOptionDetailsValidation:
+      example:
+        cardTypes:
+        - prefixes:
+          - prefixes
+          - prefixes
+          regex: regex
+          sequenceNo: 4
+          name: name
+          iconUrl: iconUrl
+        - prefixes:
+          - prefixes
+          - prefixes
+          regex: regex
+          sequenceNo: 4
+          name: name
+          iconUrl: iconUrl
+        cardNo:
+          prefixes:
+          - prefixes
+          - prefixes
+          regex: regex
+      properties:
+        cardNo:
+          $ref: '#/components/schemas/PaymentOptionDetailsValidationCard'
+        cardTypes:
+          items:
+            $ref: '#/components/schemas/PaymentOptionDetailsValidationCardType'
+          nullable: true
+          type: array
+      type: object
+    PaymentOptionDetailsValidationCard:
+      example:
+        prefixes:
+        - prefixes
+        - prefixes
+        regex: regex
+      properties:
+        prefixes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        regex:
+          nullable: true
+          type: string
+      type: object
+    PaymentOptionDetailsValidationCardType:
+      example:
+        prefixes:
+        - prefixes
+        - prefixes
+        regex: regex
+        sequenceNo: 4
+        name: name
+        iconUrl: iconUrl
+      properties:
+        sequenceNo:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        prefixes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        regex:
+          nullable: true
+          type: string
+        iconUrl:
+          nullable: true
+          type: string
+      type: object
+    PaymentOptionResponse:
+      example:
+        paymentToken: paymentToken
+        transactionDetails:
+          dateTime: dateTime
+          paymentItems:
+          - code: code
+            quantity: 1
+            price: 5.962133916683182
+            name: name
+          - code: code
+            quantity: 1
+            price: 5.962133916683182
+            name: name
+          amount: amount
+          recurring:
+            amount: amount
+            chargeOnDate: chargeOnDate
+            count: 6
+            chargeNextDate: chargeNextDate
+            interval: 0
+          showFxRate: true
+          description: description
+          invoiceNo: invoiceNo
+          currencyCode: currencyCode
+        respDesc: respDesc
+        channelCategories:
+        - code: code
+          groups:
+          - code: code
+            expirationDescription: expirationDescription
+            expirationTimer: expirationTimer
+            logoUrl: logoUrl
+            default: true
+            sequenceNo: 2
+            paymentCode: paymentCode
+            name: name
+            agentChannelCode: agentChannelCode
+            qrType: qrType
+            expiration: true
+            id: 5
+            iconUrl: iconUrl
+            optionName: optionName
+            channelCode: channelCode
+          - code: code
+            expirationDescription: expirationDescription
+            expirationTimer: expirationTimer
+            logoUrl: logoUrl
+            default: true
+            sequenceNo: 2
+            paymentCode: paymentCode
+            name: name
+            agentChannelCode: agentChannelCode
+            qrType: qrType
+            expiration: true
+            id: 5
+            iconUrl: iconUrl
+            optionName: optionName
+            channelCode: channelCode
+          expirationDescription: expirationDescription
+          expirationTimer: expirationTimer
+          logoUrl: logoUrl
+          default: true
+          sequenceNo: 9
+          paymentCode: paymentCode
+          name: name
+          agentChannelCode: agentChannelCode
+          qrType: qrType
+          expiration: true
+          id: 7
+          iconUrl: iconUrl
+          optionName: optionName
+          channelCode: channelCode
+        - code: code
+          groups:
+          - code: code
+            expirationDescription: expirationDescription
+            expirationTimer: expirationTimer
+            logoUrl: logoUrl
+            default: true
+            sequenceNo: 2
+            paymentCode: paymentCode
+            name: name
+            agentChannelCode: agentChannelCode
+            qrType: qrType
+            expiration: true
+            id: 5
+            iconUrl: iconUrl
+            optionName: optionName
+            channelCode: channelCode
+          - code: code
+            expirationDescription: expirationDescription
+            expirationTimer: expirationTimer
+            logoUrl: logoUrl
+            default: true
+            sequenceNo: 2
+            paymentCode: paymentCode
+            name: name
+            agentChannelCode: agentChannelCode
+            qrType: qrType
+            expiration: true
+            id: 5
+            iconUrl: iconUrl
+            optionName: optionName
+            channelCode: channelCode
+          expirationDescription: expirationDescription
+          expirationTimer: expirationTimer
+          logoUrl: logoUrl
+          default: true
+          sequenceNo: 9
+          paymentCode: paymentCode
+          name: name
+          agentChannelCode: agentChannelCode
+          qrType: qrType
+          expiration: true
+          id: 7
+          iconUrl: iconUrl
+          optionName: optionName
+          channelCode: channelCode
+        merchantDetails:
+          address: address
+          name: name
+          bannerUrl: bannerUrl
+          id: id
+          email: email
+          logoUrl: logoUrl
+        userDetails:
+          address:
+            shipping:
+              address3: address3
+              address2: address2
+              city: city
+              address1: address1
+              countryCode: countryCode
+              postalCode: postalCode
+              state: state
+            billing:
+              address3: address3
+              address2: address2
+              city: city
+              address1: address1
+              countryCode: countryCode
+              postalCode: postalCode
+              state: state
+        respCode: respCode
+      properties:
+        paymentToken:
+          nullable: true
+          type: string
+        merchantDetails:
+          $ref: '#/components/schemas/MerchantDetails'
+        transactionDetails:
+          $ref: '#/components/schemas/TransactionDetails'
+        channelCategories:
+          items:
+            $ref: '#/components/schemas/PaymentChannelCategory'
+          nullable: true
+          type: array
+        userDetails:
+          $ref: '#/components/schemas/UserDetails'
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentParamsDataRequestV43:
+      example:
+        installmentPeriod: 0
+        interestType: interestType
+        expiryYear: expiryYear
+        cardNo: cardNo
+        loyaltyPoints:
+        - queryReferenceSpecified: true
+          externalMerchantId: externalMerchantId
+          providerID: providerID
+          accountNo: accountNo
+          redeemAmount: 1.4658129805029452
+          accountAuthData: accountAuthData
+          rewards:
+          - Quantity: 5.962133916683182
+            id: id
+          - Quantity: 5.962133916683182
+            id: id
+        - queryReferenceSpecified: true
+          externalMerchantId: externalMerchantId
+          providerID: providerID
+          accountNo: accountNo
+          redeemAmount: 1.4658129805029452
+          accountAuthData: accountAuthData
+          rewards:
+          - Quantity: 5.962133916683182
+            id: id
+          - Quantity: 5.962133916683182
+            id: id
+        billingAddress2: billingAddress2
+        billingAddress1: billingAddress1
+        billingAddress3: billingAddress3
+        billingCountryCode: billingCountryCode
+        pin: pin
+        cardBank: cardBank
+        accountNo: accountNo
+        customerNote: customerNote
+        email: email
+        securePayToken: securePayToken
+        payLaterPeriod: 6
+        cardCountry: cardCountry
+        customerToken: customerToken
+        expiryMonth: expiryMonth
+        securityCode: securityCode
+        userAgent: userAgent
+        mobileNo: mobileNo
+        billingState: billingState
+        fxRateID: fxRateID
+        accountTokenization: true
+        billingPostalCode: billingPostalCode
+        name: name
+        paymentExpiry: paymentExpiry
+        qrType: qrType
+        billingCity: billingCity
+      properties:
+        accountTokenization:
+          type: boolean
+        customerToken:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        mobileNo:
+          nullable: true
+          type: string
+        accountNo:
+          nullable: true
+          type: string
+        securePayToken:
+          nullable: true
+          type: string
+        cardBank:
+          nullable: true
+          type: string
+        cardCountry:
+          nullable: true
+          type: string
+        installmentPeriod:
+          format: int32
+          type: integer
+        payLaterPeriod:
+          format: int32
+          nullable: true
+          type: integer
+        interestType:
+          nullable: true
+          type: string
+        securityCode:
+          nullable: true
+          type: string
+        qrType:
+          nullable: true
+          type: string
+        fxRateID:
+          nullable: true
+          type: string
+        billingAddress1:
+          nullable: true
+          type: string
+        billingAddress2:
+          nullable: true
+          type: string
+        billingAddress3:
+          nullable: true
+          type: string
+        billingCity:
+          nullable: true
+          type: string
+        billingState:
+          nullable: true
+          type: string
+        billingPostalCode:
+          nullable: true
+          type: string
+        billingCountryCode:
+          nullable: true
+          type: string
+        paymentExpiry:
+          nullable: true
+          type: string
+        cardNo:
+          nullable: true
+          type: string
+        expiryMonth:
+          nullable: true
+          type: string
+        expiryYear:
+          nullable: true
+          type: string
+        pin:
+          nullable: true
+          type: string
+        loyaltyPoints:
+          items:
+            $ref: '#/components/schemas/LoyaltyDetails'
+          nullable: true
+          type: array
+        customerNote:
+          nullable: true
+          type: string
+        userAgent:
+          nullable: true
+          type: string
+      type: object
+    PaymentParamsRequestV43:
+      example:
+        code:
+          agentCode: agentCode
+          agentChannelCode: agentChannelCode
+          channelCode: channelCode
+        data:
+          installmentPeriod: 0
+          interestType: interestType
+          expiryYear: expiryYear
+          cardNo: cardNo
+          loyaltyPoints:
+          - queryReferenceSpecified: true
+            externalMerchantId: externalMerchantId
+            providerID: providerID
+            accountNo: accountNo
+            redeemAmount: 1.4658129805029452
+            accountAuthData: accountAuthData
+            rewards:
+            - Quantity: 5.962133916683182
+              id: id
+            - Quantity: 5.962133916683182
+              id: id
+          - queryReferenceSpecified: true
+            externalMerchantId: externalMerchantId
+            providerID: providerID
+            accountNo: accountNo
+            redeemAmount: 1.4658129805029452
+            accountAuthData: accountAuthData
+            rewards:
+            - Quantity: 5.962133916683182
+              id: id
+            - Quantity: 5.962133916683182
+              id: id
+          billingAddress2: billingAddress2
+          billingAddress1: billingAddress1
+          billingAddress3: billingAddress3
+          billingCountryCode: billingCountryCode
+          pin: pin
+          cardBank: cardBank
+          accountNo: accountNo
+          customerNote: customerNote
+          email: email
+          securePayToken: securePayToken
+          payLaterPeriod: 6
+          cardCountry: cardCountry
+          customerToken: customerToken
+          expiryMonth: expiryMonth
+          securityCode: securityCode
+          userAgent: userAgent
+          mobileNo: mobileNo
+          billingState: billingState
+          fxRateID: fxRateID
+          accountTokenization: true
+          billingPostalCode: billingPostalCode
+          name: name
+          paymentExpiry: paymentExpiry
+          qrType: qrType
+          billingCity: billingCity
+      properties:
+        data:
+          $ref: '#/components/schemas/PaymentParamsDataRequestV43'
+        code:
+          $ref: '#/components/schemas/PaymentOptionDetailsPaymentCode'
+      type: object
+    PaymentRequestV43:
+      example:
+        paymentToken: paymentToken
+        browserDetails:
+          deviceType: deviceType
+          os: os
+          name: name
+          version: version
+        clientID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        responseReturnUrl: responseReturnUrl
+        clientIP: clientIP
+        payment:
+          code:
+            agentCode: agentCode
+            agentChannelCode: agentChannelCode
+            channelCode: channelCode
+          data:
+            installmentPeriod: 0
+            interestType: interestType
+            expiryYear: expiryYear
+            cardNo: cardNo
+            loyaltyPoints:
+            - queryReferenceSpecified: true
+              externalMerchantId: externalMerchantId
+              providerID: providerID
+              accountNo: accountNo
+              redeemAmount: 1.4658129805029452
+              accountAuthData: accountAuthData
+              rewards:
+              - Quantity: 5.962133916683182
+                id: id
+              - Quantity: 5.962133916683182
+                id: id
+            - queryReferenceSpecified: true
+              externalMerchantId: externalMerchantId
+              providerID: providerID
+              accountNo: accountNo
+              redeemAmount: 1.4658129805029452
+              accountAuthData: accountAuthData
+              rewards:
+              - Quantity: 5.962133916683182
+                id: id
+              - Quantity: 5.962133916683182
+                id: id
+            billingAddress2: billingAddress2
+            billingAddress1: billingAddress1
+            billingAddress3: billingAddress3
+            billingCountryCode: billingCountryCode
+            pin: pin
+            cardBank: cardBank
+            accountNo: accountNo
+            customerNote: customerNote
+            email: email
+            securePayToken: securePayToken
+            payLaterPeriod: 6
+            cardCountry: cardCountry
+            customerToken: customerToken
+            expiryMonth: expiryMonth
+            securityCode: securityCode
+            userAgent: userAgent
+            mobileNo: mobileNo
+            billingState: billingState
+            fxRateID: fxRateID
+            accountTokenization: true
+            billingPostalCode: billingPostalCode
+            name: name
+            paymentExpiry: paymentExpiry
+            qrType: qrType
+            billingCity: billingCity
+        locale: locale
+      properties:
+        payment:
+          $ref: '#/components/schemas/PaymentParamsRequestV43'
+        responseReturnUrl:
+          nullable: true
+          type: string
+        clientIP:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+    PaymentResponse:
+      example:
+        respDesc: respDesc
+        respCode: respCode
+        channelCode: channelCode
+      properties:
+        channelCode:
+          nullable: true
+          type: string
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentResponseBase:
+      example:
+        respDesc: respDesc
+        respCode: respCode
+      properties:
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PaymentUserPreference:
+      example:
+        paymentChannels:
+        - sequenceNo: 0
+          agentCode: agentCode
+          name: name
+          agentChannelCode: agentChannelCode
+          categoryCode: categoryCode
+          iconUrl: iconUrl
+          logoUrl: logoUrl
+          groupCode: groupCode
+          channelCode: channelCode
+        - sequenceNo: 0
+          agentCode: agentCode
+          name: name
+          agentChannelCode: agentChannelCode
+          categoryCode: categoryCode
+          iconUrl: iconUrl
+          logoUrl: logoUrl
+          groupCode: groupCode
+          channelCode: channelCode
+        preference:
+          mobileNoPrefix: mobileNoPrefix
+          countryCode: countryCode
+          name: name
+          mobileNo: mobileNo
+          locale: locale
+          currencyCode: currencyCode
+          email: email
+      properties:
+        preference:
+          $ref: '#/components/schemas/UserPreference'
+        paymentChannels:
+          items:
+            $ref: '#/components/schemas/PaymentChannelPreference'
+          nullable: true
+          type: array
+      type: object
+    PaymentUserPreferenceResponse:
+      example:
+        paymentToken: paymentToken
+        respDesc: respDesc
+        user:
+          paymentChannels:
+          - sequenceNo: 0
+            agentCode: agentCode
+            name: name
+            agentChannelCode: agentChannelCode
+            categoryCode: categoryCode
+            iconUrl: iconUrl
+            logoUrl: logoUrl
+            groupCode: groupCode
+            channelCode: channelCode
+          - sequenceNo: 0
+            agentCode: agentCode
+            name: name
+            agentChannelCode: agentChannelCode
+            categoryCode: categoryCode
+            iconUrl: iconUrl
+            logoUrl: logoUrl
+            groupCode: groupCode
+            channelCode: channelCode
+          preference:
+            mobileNoPrefix: mobileNoPrefix
+            countryCode: countryCode
+            name: name
+            mobileNo: mobileNo
+            locale: locale
+            currencyCode: currencyCode
+            email: email
+        respCode: respCode
+      properties:
+        paymentToken:
+          nullable: true
+          type: string
+        user:
+          $ref: '#/components/schemas/PaymentUserPreference'
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    PodInfoProviderMerchantDetails:
+      example:
+        countryCode: countryCode
+        name: name
+        id: id
+      properties:
+        id:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+      type: object
+    PodInfoProviderTransactionDetails:
+      example:
+        amount: 2.027123023002322
+        description: description
+        invoiceNo: invoiceNo
+        currencyCode: currencyCode
+      properties:
+        description:
+          nullable: true
+          type: string
+        amount:
+          format: double
+          type: number
+        currencyCode:
+          nullable: true
+          type: string
+        invoiceNo:
+          nullable: true
+          type: string
+      type: object
+    Recurring:
+      example:
+        amount: amount
+        chargeOnDate: chargeOnDate
+        count: 6
+        chargeNextDate: chargeNextDate
+        interval: 0
+      properties:
+        amount:
+          nullable: true
+          type: string
+        interval:
+          format: int32
+          type: integer
+        count:
+          format: int32
+          type: integer
+        chargeNextDate:
+          nullable: true
+          type: string
+        chargeOnDate:
+          nullable: true
+          type: string
+      type: object
+    ResponsePaymentChannel:
+      example:
+        code: code
+        expirationDescription: expirationDescription
+        expirationTimer: expirationTimer
+        logoUrl: logoUrl
+        default: true
+        sequenceNo: 2
+        paymentCode: paymentCode
+        name: name
+        agentChannelCode: agentChannelCode
+        qrType: qrType
+        expiration: true
+        id: 5
+        iconUrl: iconUrl
+        optionName: optionName
+        channelCode: channelCode
+      properties:
+        id:
+          format: int32
+          nullable: true
+          type: integer
+        sequenceNo:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        code:
+          nullable: true
+          type: string
+        iconUrl:
+          nullable: true
+          type: string
+        logoUrl:
+          nullable: true
+          type: string
+        default:
+          type: boolean
+        channelCode:
+          nullable: true
+          type: string
+        agentChannelCode:
+          nullable: true
+          type: string
+        optionName:
+          nullable: true
+          type: string
+        paymentCode:
+          nullable: true
+          type: string
+        qrType:
+          nullable: true
+          type: string
+        expirationTimer:
+          nullable: true
+          type: string
+        expirationDescription:
+          nullable: true
+          type: string
+        expiration:
+          type: boolean
+      type: object
+    TransactionDetails:
+      example:
+        dateTime: dateTime
+        paymentItems:
+        - code: code
+          quantity: 1
+          price: 5.962133916683182
+          name: name
+        - code: code
+          quantity: 1
+          price: 5.962133916683182
+          name: name
+        amount: amount
+        recurring:
+          amount: amount
+          chargeOnDate: chargeOnDate
+          count: 6
+          chargeNextDate: chargeNextDate
+          interval: 0
+        showFxRate: true
+        description: description
+        invoiceNo: invoiceNo
+        currencyCode: currencyCode
+      properties:
+        description:
+          nullable: true
+          type: string
+        amount:
+          nullable: true
+          type: string
+        currencyCode:
+          nullable: true
+          type: string
+        invoiceNo:
+          nullable: true
+          type: string
+        recurring:
+          $ref: '#/components/schemas/Recurring'
+        dateTime:
+          nullable: true
+          type: string
+        paymentItems:
+          items:
+            $ref: '#/components/schemas/PaymentItem'
+          nullable: true
+          type: array
+        showFxRate:
+          type: boolean
+      type: object
+    TransactionStatusAdditionalInfo:
+      example:
+        transactionDetails:
+          dateTime: dateTime
+          payLaterPeriod: 6
+          interestRate: 1.4658129805029452
+          amount: amount
+          remainderChargeAmount: 5.962133916683182
+          data: data
+          agentCode: agentCode
+          installmentPeriod: 0
+          interestType: interestType
+          description: description
+          loyaltyPoints:
+          - paymentScheme: paymentScheme
+            redeemAmount: 5.637376656633329
+            rewards:
+            - totalAmount: 7.061401241503109
+              amount: 9.301444243932576
+              quantity: 3.616076749251911
+              totalPrice: 2.3021358869347655
+              price: 2.027123023002322
+              name: name
+              type: type
+            - totalAmount: 7.061401241503109
+              amount: 9.301444243932576
+              quantity: 3.616076749251911
+              totalPrice: 2.3021358869347655
+              price: 2.027123023002322
+              name: name
+              type: type
+          - paymentScheme: paymentScheme
+            redeemAmount: 5.637376656633329
+            rewards:
+            - totalAmount: 7.061401241503109
+              amount: 9.301444243932576
+              quantity: 3.616076749251911
+              totalPrice: 2.3021358869347655
+              price: 2.027123023002322
+              name: name
+              type: type
+            - totalAmount: 7.061401241503109
+              amount: 9.301444243932576
+              quantity: 3.616076749251911
+              totalPrice: 2.3021358869347655
+              price: 2.027123023002322
+              name: name
+              type: type
+          ippAdditionalInfo: ippAdditionalInfo
+          monthlyPayment: monthlyPayment
+          invoiceNo: invoiceNo
+          currencyCode: currencyCode
+          channelCode: channelCode
+          remainderChargeMode: remainderChargeMode
+        paymentResultDetails:
+          code: code
+          description: description
+          autoRedirectionTimer: 4
+          frontendReturnData: frontendReturnData
+          autoRedirect: true
+          redirectImmediately: true
+          frontendReturnUrl: frontendReturnUrl
+        merchantDetails:
+          address: address
+          name: name
+          email: email
+          logoUrl: logoUrl
+      properties:
+        merchantDetails:
+          $ref: '#/components/schemas/TransactionStatusMerchant'
+        transactionDetails:
+          $ref: '#/components/schemas/TransactionStatusInfo'
+        paymentResultDetails:
+          $ref: '#/components/schemas/TransactionStatusPayment'
+      type: object
+    TransactionStatusInfo:
+      example:
+        dateTime: dateTime
+        payLaterPeriod: 6
+        interestRate: 1.4658129805029452
+        amount: amount
+        remainderChargeAmount: 5.962133916683182
+        data: data
+        agentCode: agentCode
+        installmentPeriod: 0
+        interestType: interestType
+        description: description
+        loyaltyPoints:
+        - paymentScheme: paymentScheme
+          redeemAmount: 5.637376656633329
+          rewards:
+          - totalAmount: 7.061401241503109
+            amount: 9.301444243932576
+            quantity: 3.616076749251911
+            totalPrice: 2.3021358869347655
+            price: 2.027123023002322
+            name: name
+            type: type
+          - totalAmount: 7.061401241503109
+            amount: 9.301444243932576
+            quantity: 3.616076749251911
+            totalPrice: 2.3021358869347655
+            price: 2.027123023002322
+            name: name
+            type: type
+        - paymentScheme: paymentScheme
+          redeemAmount: 5.637376656633329
+          rewards:
+          - totalAmount: 7.061401241503109
+            amount: 9.301444243932576
+            quantity: 3.616076749251911
+            totalPrice: 2.3021358869347655
+            price: 2.027123023002322
+            name: name
+            type: type
+          - totalAmount: 7.061401241503109
+            amount: 9.301444243932576
+            quantity: 3.616076749251911
+            totalPrice: 2.3021358869347655
+            price: 2.027123023002322
+            name: name
+            type: type
+        ippAdditionalInfo: ippAdditionalInfo
+        monthlyPayment: monthlyPayment
+        invoiceNo: invoiceNo
+        currencyCode: currencyCode
+        channelCode: channelCode
+        remainderChargeMode: remainderChargeMode
+      properties:
+        description:
+          nullable: true
+          type: string
+        dateTime:
+          nullable: true
+          type: string
+        agentCode:
+          nullable: true
+          type: string
+        channelCode:
+          nullable: true
+          type: string
+        data:
+          nullable: true
+          type: string
+        amount:
+          nullable: true
+          type: string
+        currencyCode:
+          nullable: true
+          type: string
+        invoiceNo:
+          nullable: true
+          type: string
+        installmentPeriod:
+          format: int32
+          nullable: true
+          type: integer
+        payLaterPeriod:
+          format: int32
+          nullable: true
+          type: integer
+        interestType:
+          nullable: true
+          type: string
+        interestRate:
+          format: double
+          nullable: true
+          type: number
+        monthlyPayment:
+          nullable: true
+          type: string
+        ippAdditionalInfo:
+          nullable: true
+          type: string
+        remainderChargeMode:
+          nullable: true
+          type: string
+        remainderChargeAmount:
+          format: double
+          nullable: true
+          type: number
+        loyaltyPoints:
+          items:
+            $ref: '#/components/schemas/TransactionStatusLoyaltyInfo'
+          nullable: true
+          type: array
+      type: object
+    TransactionStatusLoyaltyInfo:
+      example:
+        paymentScheme: paymentScheme
+        redeemAmount: 5.637376656633329
+        rewards:
+        - totalAmount: 7.061401241503109
+          amount: 9.301444243932576
+          quantity: 3.616076749251911
+          totalPrice: 2.3021358869347655
+          price: 2.027123023002322
+          name: name
+          type: type
+        - totalAmount: 7.061401241503109
+          amount: 9.301444243932576
+          quantity: 3.616076749251911
+          totalPrice: 2.3021358869347655
+          price: 2.027123023002322
+          name: name
+          type: type
+      properties:
+        paymentScheme:
+          nullable: true
+          type: string
+        redeemAmount:
+          format: double
+          type: number
+        rewards:
+          items:
+            $ref: '#/components/schemas/TransactionStatusRewards'
+          nullable: true
+          type: array
+      type: object
+    TransactionStatusMerchant:
+      example:
+        address: address
+        name: name
+        email: email
+        logoUrl: logoUrl
+      properties:
+        name:
+          nullable: true
+          type: string
+        address:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        logoUrl:
+          nullable: true
+          type: string
+      type: object
+    TransactionStatusPayment:
+      example:
+        code: code
+        description: description
+        autoRedirectionTimer: 4
+        frontendReturnData: frontendReturnData
+        autoRedirect: true
+        redirectImmediately: true
+        frontendReturnUrl: frontendReturnUrl
+      properties:
+        description:
+          nullable: true
+          type: string
+        code:
+          nullable: true
+          type: string
+        autoRedirect:
+          type: boolean
+        redirectImmediately:
+          type: boolean
+        autoRedirectionTimer:
+          format: int32
+          type: integer
+        frontendReturnUrl:
+          nullable: true
+          type: string
+        frontendReturnData:
+          nullable: true
+          type: string
+      type: object
+    TransactionStatusRequest:
+      example:
+        paymentToken: paymentToken
+        browserDetails:
+          deviceType: deviceType
+          os: os
+          name: name
+          version: version
+        clientID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        additionalInfo: true
+        locale: locale
+      properties:
+        additionalInfo:
+          type: boolean
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+    TransactionStatusResponse:
+      example:
+        respDesc: respDesc
+        additionalInfo:
+          transactionDetails:
+            dateTime: dateTime
+            payLaterPeriod: 6
+            interestRate: 1.4658129805029452
+            amount: amount
+            remainderChargeAmount: 5.962133916683182
+            data: data
+            agentCode: agentCode
+            installmentPeriod: 0
+            interestType: interestType
+            description: description
+            loyaltyPoints:
+            - paymentScheme: paymentScheme
+              redeemAmount: 5.637376656633329
+              rewards:
+              - totalAmount: 7.061401241503109
+                amount: 9.301444243932576
+                quantity: 3.616076749251911
+                totalPrice: 2.3021358869347655
+                price: 2.027123023002322
+                name: name
+                type: type
+              - totalAmount: 7.061401241503109
+                amount: 9.301444243932576
+                quantity: 3.616076749251911
+                totalPrice: 2.3021358869347655
+                price: 2.027123023002322
+                name: name
+                type: type
+            - paymentScheme: paymentScheme
+              redeemAmount: 5.637376656633329
+              rewards:
+              - totalAmount: 7.061401241503109
+                amount: 9.301444243932576
+                quantity: 3.616076749251911
+                totalPrice: 2.3021358869347655
+                price: 2.027123023002322
+                name: name
+                type: type
+              - totalAmount: 7.061401241503109
+                amount: 9.301444243932576
+                quantity: 3.616076749251911
+                totalPrice: 2.3021358869347655
+                price: 2.027123023002322
+                name: name
+                type: type
+            ippAdditionalInfo: ippAdditionalInfo
+            monthlyPayment: monthlyPayment
+            invoiceNo: invoiceNo
+            currencyCode: currencyCode
+            channelCode: channelCode
+            remainderChargeMode: remainderChargeMode
+          paymentResultDetails:
+            code: code
+            description: description
+            autoRedirectionTimer: 4
+            frontendReturnData: frontendReturnData
+            autoRedirect: true
+            redirectImmediately: true
+            frontendReturnUrl: frontendReturnUrl
+          merchantDetails:
+            address: address
+            name: name
+            email: email
+            logoUrl: logoUrl
+        locale: locale
+        invoiceNo: invoiceNo
+        respCode: respCode
+        channelCode: channelCode
+      properties:
+        locale:
+          nullable: true
+          type: string
+        additionalInfo:
+          $ref: '#/components/schemas/TransactionStatusAdditionalInfo'
+        invoiceNo:
+          nullable: true
+          type: string
+        channelCode:
+          nullable: true
+          type: string
+        respCode:
+          nullable: true
+          type: string
+        respDesc:
+          nullable: true
+          type: string
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    TransactionStatusRewards:
+      example:
+        totalAmount: 7.061401241503109
+        amount: 9.301444243932576
+        quantity: 3.616076749251911
+        totalPrice: 2.3021358869347655
+        price: 2.027123023002322
+        name: name
+        type: type
+      properties:
+        totalPrice:
+          format: double
+          type: number
+        totalAmount:
+          format: double
+          type: number
+        name:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        amount:
+          format: double
+          type: number
+        quantity:
+          format: double
+          type: number
+        price:
+          format: double
+          type: number
+      type: object
+    UserDetails:
+      example:
+        address:
+          shipping:
+            address3: address3
+            address2: address2
+            city: city
+            address1: address1
+            countryCode: countryCode
+            postalCode: postalCode
+            state: state
+          billing:
+            address3: address3
+            address2: address2
+            city: city
+            address1: address1
+            countryCode: countryCode
+            postalCode: postalCode
+            state: state
+      properties:
+        address:
+          $ref: '#/components/schemas/CustomerAddress'
+      type: object
+    UserPreference:
+      example:
+        mobileNoPrefix: mobileNoPrefix
+        countryCode: countryCode
+        name: name
+        mobileNo: mobileNo
+        locale: locale
+        currencyCode: currencyCode
+        email: email
+      properties:
+        name:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        mobileNo:
+          nullable: true
+          type: string
+        mobileNoPrefix:
+          nullable: true
+          type: string
+        locale:
+          nullable: true
+          type: string
+        currencyCode:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+      type: object
+    RedirectBackEndPostPaymentRedirectRequest:
+      properties:
+        paymentResponse:
+          type: string
+        isLeaveApp:
+          type: string
+      type: object
+    RedirectFrontEndPostPaymentRedirectRequest:
+      properties:
+        payResponse:
+          type: string
+        isLeaveApp:
+          type: string
+      type: object
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-applepay-merchantvalidation:
+      properties:
+        validationUrl:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-cache-cleancache:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-canceltransaction:
+      properties:
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-cardinstallmentplaninfo:
+      properties:
+        cardNo:
+          nullable: true
+          type: string
+        bankCode:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-cardtokeninfo:
+      properties:
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-exchangerate:
+      properties:
+        bin:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-exchangerate-secure:
+      properties:
+        payload:
+          nullable: true
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-exchangerate-apmmccexchangerate:
+      properties:
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-initialization:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-loyaltypointinfo:
+      properties:
+        providerID:
+          nullable: true
+          type: string
+        profileID:
+          nullable: true
+          type: string
+        referenceID:
+          nullable: true
+          type: string
+        cardNo:
+          nullable: true
+          type: string
+        expiryMonth:
+          nullable: true
+          type: string
+        expiryYear:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-payment:
+      properties:
+        payment:
+          $ref: '#/components/schemas/PaymentParamsRequestV43'
+        responseReturnUrl:
+          nullable: true
+          type: string
+        clientIP:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentinquiry:
+      properties:
+        payload:
+          nullable: true
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentinstruction:
+      properties:
+        payload:
+          nullable: true
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentnotification:
+      properties:
+        plateform:
+          nullable: true
+          type: string
+        recipientID:
+          nullable: true
+          type: string
+        recipientName:
+          nullable: true
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentoption:
+      properties:
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentoptiondetails:
+      properties:
+        categoryCode:
+          type: string
+        groupCode:
+          type: string
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - categoryCode
+      - groupCode
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymentsimulate:
+      properties:
+        payload:
+          nullable: true
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-paymenttoken:
+      properties:
+        payload:
+          nullable: true
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-redirectbackend:
+      properties:
+        paymentResponse:
+          type: string
+        isLeaveApp:
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-redirectfrontend:
+      properties:
+        payResponse:
+          type: string
+        isLeaveApp:
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-transactionstatus:
+      properties:
+        additionalInfo:
+          type: boolean
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--payment-4.3-userpreference:
+      properties:
+        paymentToken:
+          type: string
+        locale:
+          nullable: true
+          type: string
+        clientID:
+          format: uuid
+          type: string
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+      required:
+      - paymentToken
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+
